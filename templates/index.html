@@ -1,12 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fantasy Cricket</title>
-</head>
-<body>
-    <h2>Create dream teams and earn profits with this optimizer </h2>
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+      crossorigin="anonymous"
+    />
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <!--<link rel="stylesheet" href="css/theme.css" />-->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/table.css" />
+    <link rel="stylesheet" href="css/load_page_animation.css" />
+    <title>Ground Water DashBoard</title>
+  </head>
+  <body onload="fetchfiles();">
+    <!-- NAVBAR -->
+    <nav
+      class="navbar navbar-expand-lg bg-dark navbar-dark py-3"
+      id="mainNavbar"
+    >
+      <div class="container">
+        <a href="index.html" class="navbar-brand display-5">
+          <b>Fantasy Cricket Team Selector</b>
+        </a>
+      </div>
+    </nav>
+
+    <!--HOME SECTION-->
+    <section id="home" class="main_content">
+      <div class="container">
+        <div class="row mt-5">
+          <!--LEFT SIDE HOME-->
+          <div class="col-md-6 col-sm-12">
+            <div class="card card-body mb-3 shadow-sm">
+              <h4 class="text-center mb-1">
+                <b>Select Teams</b>
+              </h4>
+
+              <!--DATE HANDLING FORM-->
+
+              <div class="row my-4 text-center">
+                <div class="col-6 p-1">
+                  <div class="">
+                    <div class="card-title lead"><b>Team1</b></div>
+                    <select
+                      name="Team1"
+                      id="team1Select"
+                      class="form-control"
+                      onclick="changeTeam1(this.value);"
+                    >
+                      <option value="Mumbai Indians">Mumbai Indians</option>
+                      <option value="Chennai Super Kings">Chennai Super Kings</option>
+                      <option value="Rajasthan Royals">Rajasthan Royals</option>
+                      <option value="Delhi Capitals">Delhi Capitals</option>
+                      <option value="Royal Challengers Bangalore"> Royal Challengers Bangalore</option>
+                      <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                      <option value="Punjab Kings">Punjab Kings</option>  <!--Check for value-->>
+                      <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>Team2</b></div>
+                      <select
+                        name="Team2"
+                        id="team2Select"
+                        class="form-control"
+                        onclick="changeTeam2(this.value);"
+                      >
+                        <option value="Mumbai Indians">Mumbai Indians</option>
+                        <option value="Chennai Super Kings">Chennai Super Kings</option>
+                        <option value="Rajasthan Royals">Rajasthan Royals</option>
+                        <option value="Delhi Capitals">Delhi Capitals</option>
+                        <option value="Royal Challengers Bangalore"> Royal Challengers Bangalore</option>
+                        <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                        <option value="Punjab Kings">Punjab Kings</option>  <!--Check for value-->>
+                        <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>Stadium</b></div>
+                      <select
+                        name="Stadium"
+                        id="stadiumSelect"
+                        class="form-control"
+                        onclick="changeStadium(this.value);"
+                      >
+                        <option value="a">a</option>
+                        <option value="b">b</option>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>City</b></div>
+                      <select
+                        name="City"
+                        id="citySelect"
+                        class="form-control"
+                        onclick="changeCity(this.value);"
+                      >
+                        <option value="c">c</option>
+                        <option value="d">d</option>
+                    </select>
+                    </div>
+                 </div>
+                 <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>Toss Winner</b></div>
+                      <select
+                        name="Toss Winner"
+                        id="twinnerSelect"
+                        class="form-control"
+                        onclick="changeTwinner(this.value);"
+                      >
+                        <option value="c">c</option>
+                        <option value="d">d</option>
+                    </select>
+                    </div>
+                 </div>
+                 <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>Toss Decision</b></div>
+                      <select
+                        name="Decision"
+                        id="decisionSelect"
+                        class="form-control"
+                        onclick="changeDecision(this.value);"
+                      >
+                        <option value="c">c</option>
+                        <option value="d">d</option>
+                    </select>
+                    </div>
+                 </div>
+              </div>
+              <div class="row text-center my-2">
+                <h5 id="checkError" class="mx-auto"></h5>
+              </div>
+              <div class="row my-2">
+                
+              </div>
+            </div>
+            
+          <!--RIGHT SIDE HOME-->
+          <div class="col-md-6 col-sm-12">
+            <!---->
+            <!--MAP CONTAINER WITH BACK BUTTON-->
+            <div class="card shadow">
+             
+            </div>
+      </div>
+    </section>
+
+    <!--FOOTER-->
+    <footer id="main-footer" class="py-5 bg-light mb-0 bg-dark text-white mt-5">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-6 mx-auto">
+            <p class="display-4">
+                Add Footer
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
