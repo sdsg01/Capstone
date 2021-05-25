@@ -1,2 +1,3 @@
 # Capstone
-capstone project
+capstone project Fantasy Cricket
+
