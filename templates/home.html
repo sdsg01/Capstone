@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+      crossorigin="anonymous"
+    />
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <!--<link rel="stylesheet" href="css/theme.css" />-->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/table.css" />
+    <link rel="stylesheet" href="css/load_page_animation.css" />
+    <title>Fantasy Team Selector</title>
+  </head>
+  <body onload="fetchfiles();">
+    <!-- NAVBAR -->
+    <nav
+      class="navbar navbar-expand-lg bg-dark navbar-dark py-3"
+      id="mainNavbar"
+    >
+      <div class="container">
+        <a href="{{ url_for('index') }}" class="navbar-brand display-5">
+          <b>Fantasy Cricket Team Selector</b>
+        </a>
+      </div>
+    </nav>
+
+    <!--HOME SECTION-->
+    <section id="home" class="main_content">
+      <div class="container">
+        <div class="row mt-5">
+          <!--LEFT SIDE HOME-->
+          <div class="col-md-6 col-sm-12">
+            <div class="card card-body mb-3 shadow-sm">
+              <h4 class="text-center mb-1">
+                <b>Select Teams</b>
+              </h4>
+
+              <!--DATE HANDLING FORM-->
+
+              <div class="row my-4 text-center">
+                <div class="col-6 p-1">
+                  <div class="">
+                    <div class="card-title lead"><b>Team1</b></div>
+                    <select
+                      name="Team1"
+                      id="team1Select"
+                      class="form-control"
+                      onclick="changeTeam1(this.value);"
+                    >
+                      <option style="display: none;"></option>
+                      <option value="MI">Mumbai Indians</option>
+                      <option value="CSK">Chennai Super Kings</option>
+                      <option value="RR">Rajasthan Royals</option>
+                      <option value="DC">Delhi Capitals</option>
+                      <option value="RCB"> Royal Challengers Bangalore</option>
+                      <option value="KKR">Kolkata Knight Riders</option>
+                      <option value="KXIP">Punjab Kings</option>  <!--Check for value-->>
+                      <option value="SRH">Sunrisers Hyderabad</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>Team2</b></div>
+                      <select
+                        name="Team2"
+                        id="team2Select"
+                        class="form-control"
+                        onclick="changeTeam2(this.value);"
+                        
+                      >
+                      <option></option>
+                      <option style="display: none;"></option>
+                      <option value="MI">Mumbai Indians</option>
+                      <option value="CSK">Chennai Super Kings</option>
+                      <option value="RR">Rajasthan Royals</option>
+                      <option value="DC">Delhi Capitals</option>
+                      <option value="RCB"> Royal Challengers Bangalore</option>
+                      <option value="KKR">Kolkata Knight Riders</option>
+                      <option value="KXIP">Punjab Kings</option>  <!--Check for value-->>
+                      <option value="SRH">Sunrisers Hyderabad</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>Stadium</b></div>
+                      <select
+                        name="Stadium"
+                        id="stadiumSelect"
+                        class="form-control"
+                        onclick="changeStadium(this.value);"
+                      >
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>City</b></div>
+                      <select
+                        name="City"
+                        id="citySelect"
+                        class="form-control"
+                        onclick="changeCity(this.value);"
+                      >
+                        
+                    </select>
+                    </div>
+                 </div>
+                 <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>Toss Winner</b></div>
+                      <select
+                        name="Toss Winner"
+                        id="twinnerSelect"
+                        class="form-control"
+                        onclick="changeTwinner(this.value);"
+                      >
+                    </select>
+                    </div>
+                 </div>
+                 <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead"><b>Toss Decision</b></div>
+                      <select
+                        name="Decision"
+                        id="decisionSelect"
+                        class="form-control"
+                        onclick="changeDecision(this.value);"
+                      >
+                        <option style="display: none;"></option>
+                        <option value="field">field</option>
+                        <option value="bat">bat</option>
+                    </select>
+                    </div>
+                 </div>
+              </div>
+              <div>
+                <button onclick=load_players()>Get Players</button>
+              </div>
+              <div class="row text-center my-2">
+                <h5 id="checkError" class="mx-auto"></h5>
+              </div>
+              <div class="row my-2">
+              </div>
+               
+            </div>
+          
+          <!--RIGHT SIDE HOME-->
+          <div class="col-md-6 col-sm-12">
+            <div class="card card-body mb-3 shadow-sm"  id = 'select players'>
+              <h4 class="text-center mb-1">
+                <b>Select Players</b>
+              </h4>
+              <div class="row my-4 text-center">
+                <div class="col-6 p-1">
+                  <div class="">
+                    <div class="card-title lead" id="t1_players_Select"><b>Team1</b></div>
+                  </div>
+                </div>
+                <div class="col-6 p-1">
+                    <div class="">
+                      <div class="card-title lead" id="t2_players_Select"><b>Team2</b></div>
+                    </div>
+                  </div>
+              </div>
+             </div>
+             <div class="col-6 p-1">
+              <button onclick=submit()>Submit</button>
+            </div>
+      </div>
+      
+    </section>
+
+    <!--FOOTER-->
+    <footer id="main-footer" class="py-5 bg-light mb-0 bg-dark text-white mt-5">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-6 mx-auto">
+            <p class="display-4">
+                Add Footer
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+
+ 
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <!-- <script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script> -->
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var all_players, Team1, Team2
+      var team1_players = ''
+      var team2_players = ''
+      var stadiums = ['M Chinnaswamy Stadium',
+       'Punjab Cricket Association Stadium, Mohali', 'Feroz Shah Kotla',
+       'Wankhede Stadium', 'Eden Gardens', 'Sawai Mansingh Stadium',
+       'Rajiv Gandhi International Stadium, Uppal',
+       'MA Chidambaram Stadium, Chepauk', 'Dr DY Patil Sports Academy',
+       'Newlands', "St George's Park", 'Kingsmead', 'SuperSport Park',
+       'Buffalo Park', 'New Wanderers Stadium', 'De Beers Diamond Oval',
+       'OUTsurance Oval', 'Brabourne Stadium',
+       'Sardar Patel Stadium, Motera', 'Barabati Stadium',
+       'Vidarbha Cricket Association Stadium, Jamtha',
+       'Himachal Pradesh Cricket Association Stadium', 'Nehru Stadium',
+       'Holkar Cricket Stadium',
+       'Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium',
+       'Subrata Roy Sahara Stadium',
+       'Shaheed Veer Narayan Singh International Stadium',
+       'JSCA International Stadium Complex', 'Sheikh Zayed Stadium',
+       'Sharjah Cricket Stadium', 'Dubai International Cricket Stadium',
+       'Maharashtra Cricket Association Stadium',
+       'Punjab Cricket Association IS Bindra Stadium, Mohali',
+       'Saurashtra Cricket Association Stadium', 'Green Park',
+       'M.Chinnaswamy Stadium']
+
+      var cities = ['Bangalore', 'Chandigarh', 'Delhi', 'Mumbai', 'Kolkata', 'Jaipur',
+       'Hyderabad', 'Chennai', 'Cape Town', 'Port Elizabeth', 'Durban',
+       'Centurion', 'East London', 'Johannesburg', 'Kimberley',
+       'Bloemfontein', 'Ahmedabad', 'Cuttack', 'Nagpur', 'Dharamsala',
+       'Kochi', 'Indore', 'Visakhapatnam', 'Pune', 'Raipur', 'Ranchi',
+       'Abu Dhabi', 'Sharjah', 'Dubai', 'Rajkot', 'Kanpur']
+
+      function changeTeam1(team1){
+          Team1 = team1
+          toss_winner()
+      }
+
+      function changeTeam2(team2){
+          Team2 = team2
+          toss_winner()
+      }
+
+      function toss_winner(){
+          var str = ''
+          str = "<option>" + Team1 + "</option>"
+          str += "<option>" + Team2 + "</option>"
+          document.getElementById('twinnerSelect').innerHTML='';
+          document.getElementById('twinnerSelect').innerHTML+=str;
+      }
+
+      function fetchfiles() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          all_players = JSON.parse(this.responseText);
+        }
+      };
+      xmlhttp.open("GET", "static/js/players.json", true);
+      xmlhttp.send();
+      load_stadium_cities();
+      }
+
+      function load_stadium_cities(){
+        var str1='<option style="display: none;"></option>'
+        for(var i =0;i<cities.length;i++){
+          var str =""
+          str = "<option>" + cities[i] + "</option>"
+          str1+=str
+        }
+          document.getElementById('citySelect').innerHTML+=str1;
+
+        var str2='<option style="display: none;"></option>'
+        for(var i =0;i<stadiums.length;i++){
+          var str =""
+          str = "<option>" + stadiums[i] + "</option>"
+          str2+=str
+        }
+          document.getElementById('stadiumSelect').innerHTML+=str2;
+      }
+      function load_players(){
+        var team1_players = Object.values(all_players[Team1])
+        var team2_players = Object.values(all_players[Team2])
+      
+        var str1 = ''
+        for(var i=0;i<team1_players.length;i++){
+          var pname = JSON.stringify(team1_players[i])
+          var str = '<input type="checkbox" class= "team1_players" value='+pname+' id='+pname+'><label>'+ pname+'</label><br>'
+          str1+=str
+          
+        }
+        document.getElementById('t1_players_Select').innerHTML='';
+        document.getElementById('t1_players_Select').innerHTML+=str1;
+
+        var str2 = ''
+        for(var i=0;i<team2_players.length;i++){
+          var pname = JSON.stringify(team2_players[i])
+          var str = '<input type="checkbox" class="team2_players" value='+pname+' id='+pname+'><label>'+ pname+'</label><br>'
+          str2+=str
+        }
+        document.getElementById('t2_players_Select').innerHTML='';
+        document.getElementById('t2_players_Select').innerHTML+=str2;
+      }
+    
+      
+    
+      function submit() {  
+        var t1 = document.getElementsByClassName("team1_players"); 
+        var t2 = document.getElementsByClassName("team2_players");  
+        var team1 = []
+        var team2 = []
+       
+        for(var i =0; i<25; i++){
+        if (t1[i].checked == true){  
+          var y = t1[i].value;  
+          team1.push(y)
+        }  
+        if (t2[i].checked == true){  
+          var y = t2[i].value;  
+          team2.push(y)
+        }  
+
+        $.ajax({
+          url: Flask.url_for('index'),
+          type: 'POST',
+          data: team1,   // converts js value to JSON string
+          })
+          .done(function(){     // on success get the return object from server
+              console.log('done')     // do whatever with it. In this case see it in console
+        })
+      } 
+       
+}  
+  </script>
+  </html>
